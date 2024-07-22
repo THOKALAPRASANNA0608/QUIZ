@@ -1,0 +1,47 @@
+class QuizGame:
+    def _init_(self):
+        self.questions = [
+            {
+                "question": "What is the capital of France?",
+                "options": ["A. London", "B. Berlin", "C. Paris", "D. Madrid"],
+                "answer": "C"
+            },
+            {
+                "question": "Which is the largest planet in the Solar System?",
+                "options": ["A. Earth", "B. Jupiter", "C. Mars", "D. Venus"],
+                "answer": "B"
+            },
+            {
+                "question": "What is the boiling point of water?",
+                "options": ["A. 90°C", "B. 100°C", "C. 110°C", "D. 120°C"],
+                "answer": "B"
+            }
+        ]
+        self.score = 0
+
+    def ask_question(self, question):
+        print(question["question"])
+        for option in question["options"]:
+            print(option)
+        answer = input("Enter your answer (A, B, C, or D): ").upper()
+        return answer
+
+    def provide_feedback(self, user_answer, correct_answer):
+        if user_answer == correct_answer:
+            print("Correct!")
+            self.score += 1
+        else:
+            print(f"Incorrect. The correct answer was {correct_answer}.")
+
+    def display_final_score(self):
+        print(f"Your final score is: {self.score}/{len(self.questions)}")
+
+    def start_quiz(self):
+        for question in self.questions:
+            user_answer = self.ask_question(question)
+            self.provide_feedback(user_answer, question["answer"])
+        self.display_final_score()
+
+if _name_ == "_main_":
+    game = QuizGame()
+    game.start_quiz()
